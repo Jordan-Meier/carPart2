@@ -5,7 +5,7 @@
     $app = new Silex\Application();
 
 
-    $app->get("/car_form", function() {
+    $app->get("/", function() {
             return "
             <!DOCTYPE html>
             <html>
@@ -49,7 +49,23 @@
             }
         }
 
-
+        $output = "";
+        if(empty($cars_matching_search)) {
+            echo "your search parameters did not return any results";
+        }
+        foreach ($cars_matching_search as $car) {
+            $output = $output . "<div class='row'>
+                <div class='col-md-6'>
+                    <p>Price: " . $car->getPrice() . "</p>
+                    <p>Model: " . $car->getModel() . "</p>
+                    <p>Miles: " . $car->getMiles() . "</p>
+                </div>
+                <div class='col-md-6'>
+                    <img src=" . $car->getPhoto() . ">
+                </div>
+                ";
+        }
+        return $output;
     });
 
 
