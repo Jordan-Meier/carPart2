@@ -7,11 +7,33 @@
 
     $app->get("/car_form", function() {
             return "
-            
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>
+                    <title>Find a Car</title>
+                </head>
+                <body>
+                    <div class='container'>
+                        <h1>Find a Car!</h1>
+                        <form action='/view_cars'>
+                            <div class='form-group'>
+                                <label for='price'>Enter Maximum Price:</label>
+                                <input id='price' name='price' class='form-control' type='number'>
+                            </div>
+                            <div class='form-group'>
+                                <label for='mileage'>Enter Maximum Mileage:</label>
+                                <input id='mileage' name='mileage' class='form-control' type='number'>
+                            </div>
+                            <button type='submit' class='btn-success'>Submit</button>
+                        </form>
+                    </div>
+                </body>
+            </html>
             ";
     });
 
-    $app->get("/", function() {
+    $app->get("/view_cars", function() {
         $honda = new Car("1999 Honda CRV", 90000, 6000, "img/honda.jpg");
         $tesla = new Car("2014 Tesla Model S", 5000, 35000, "img/tesla.jpg");
         $nissan = new Car("2013 Nissan Leaf", 8000, 20000, "img/leaf.jpg");
